@@ -9,6 +9,13 @@ on:
       - main
 # run multiple jobs (in sequence)
 jobs:
+  # check type checker
+  run-type-checker: 
+    name: type checking
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check with Pyright
+      uses: jakebailey/pyright-action@v2
   # run pre-defined tests (on full codebase)
   run-tests: 
     name: testing
