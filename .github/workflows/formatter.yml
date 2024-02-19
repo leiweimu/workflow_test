@@ -42,7 +42,8 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v42
         with:
-          files: **/*.py
+          files: |
+            **.py
       - name: Check files using the black formatter
         uses: rickstaa/action-black@v1
         id: action_black
