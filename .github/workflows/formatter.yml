@@ -14,7 +14,7 @@ jobs:
     name: testing
     runs-on: ubuntu-latest
     steps:
-    - Check out code
+    - name: Check out code
       uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v4
