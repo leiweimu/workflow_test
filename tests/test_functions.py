@@ -8,4 +8,4 @@ def test_very_important_function():
 def test_foo(capsys): 
   foo()
   captured = capsys.readouterr()
-  assert captured.out == "All the newlines above me should be deleted!"
+  assert captured.out == "All the newlines above me should be deleted!\n"
