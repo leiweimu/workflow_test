@@ -38,7 +38,9 @@ jobs:
   # format (changed) code using black
   format-code:
     name: linting
-    needs: run-tests # run linter only after tests are passed
+    needs: # run linter only after tests are passed
+      - run-type-checker
+      - run-tests
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -51,6 +53,13 @@ jobs:
         with:
           files: |
             **.py
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
       - name: Check files using the black formatter
         uses: rickstaa/action-black@v1
         id: action_black
