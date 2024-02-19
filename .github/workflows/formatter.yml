@@ -18,6 +18,8 @@ jobs:
       uses: actions/checkout@v4
     - name: Check with Pyright
       uses: jakebailey/pyright-action@v2
+      with: 
+        working-directory: 'sketchyopts'
   # run pre-defined tests (on full codebase)
   run-tests: 
     name: testing
