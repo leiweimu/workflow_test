@@ -73,6 +73,7 @@ jobs:
             echo "$file was changed"
           done
       - name: Check files using the black formatter
+        if: steps.changed-files.outputs.all_changed_files != ""
         uses: rickstaa/action-black@v1
         id: action_black
         with:
