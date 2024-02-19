@@ -1,25 +1,62 @@
-name: black-action
-on: [push, pull_request]
+name: continuous integration
+# execute on push and pull request on the main branch
+on: 
+  push: 
+    branches: 
+      - main
+  pull_request: 
+    branches: 
+      - main
+# run multiple jobs (in sequence)
 jobs:
-  linter_name:
-    name: runner / black
+  # run pre-defined tests (on full codebase)
+  run-tests: 
+    name: testing
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+    - Check out code
+      uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r ./tests/requirements.txt
+    - name: Test with pytest
+      run: |
+        python -m pip install pytest pytest-cov
+        python -m pytest --cov --cov-report term-missing
+  # format (changed) code using black
+  format-code:
+    name: linting
+    needs: run-tests # run linter only after tests are passed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v42
+        with:
+          files: **/*.py
       - name: Check files using the black formatter
         uses: rickstaa/action-black@v1
         id: action_black
         with:
-          black_args: "."
+          black_args: "${{ steps.changed-files.outputs.all_changed_files }}"
       - name: Create Pull Request
         if: steps.action_black.outputs.is_formatted == 'true'
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Format Python code with psf/black push"
-          commit-message: ":art: Format Python code with psf/black"
+          title: "[GiHub Actions] Format Python code with Black"
+          commit-message: "Format Python code with Black"
           body: |
-            There appear to be some python formatting errors in ${{ github.sha }}. This pull request
-            uses the [psf/black](https://github.com/psf/black) formatter to fix these issues.
+            There appear to be some python formatting errors in ${{ github.sha }}. This automatically generated pull request
+            uses the [Black](https://github.com/psf/black) formatter to fix these issues.
           base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
           branch: actions/black
