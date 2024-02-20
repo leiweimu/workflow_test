@@ -10,8 +10,10 @@ Intoductory texts.
 
 .. toctree::
    :hidden:
-   :caption: Reference
+   :caption: API Reference
    :maxdepth: 2
+
+api/functions
 
 Indices and Tables
 ==================
