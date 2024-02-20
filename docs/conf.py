@@ -116,7 +116,7 @@ autosummary_generate = True
 apidoc_module_dir = '../sketchyopts/'
 apidoc_output_dir = 'api'
 # # apidoc_excluded_paths = ['../tests']
-apidoc_separate_modules = False
+apidoc_separate_modules = True
 # apidoc_module_first = True
 
 python_use_unqualified_type_names = False
