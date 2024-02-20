@@ -15,5 +15,5 @@ def bar():
         
     print("There is a newline above me, and that's OK!")
 
-def daily_average(temperatures: list[float]) -> str:
-    return sum(temperatures) / str(len(temperatures))
+def daily_average(temperatures: list[float]) -> float:
+    return sum(temperatures) / len(temperatures)
