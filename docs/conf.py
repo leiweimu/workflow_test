@@ -32,6 +32,14 @@ templates_path = ['_templates']
 
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+autodoc_default_options = {
+    'member-order': 'bysource',
+    'special-members': True,
+    'exclude-members': '__repr__, __str__, __weakref__',
+}
+
+autosummary_generate = True
+
 # apidoc_module_dir = '../sketchyopts'
 # apidoc_output_dir = 'api'
 # apidoc_excluded_paths = ['../tests']
