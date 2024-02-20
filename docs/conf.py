@@ -13,7 +13,7 @@ extensions = [
     'sphinx.ext.linkcode',
     'sphinx.ext.napoleon',
     # 'sphinxcontrib.katex',
-    'sphinx_autodoc_typehints',
+    # 'sphinx_autodoc_typehints',
     # 'coverage_check',
     # 'myst_nb',  # This is used for the .ipynb notebooks
     # 'sphinx_gallery.gen_gallery',
