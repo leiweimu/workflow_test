@@ -103,6 +103,10 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
     steps:
-    - id: deployment
+    - name: Build and deploy documentation. 
+      id: deployment
       uses: sphinx-notes/pages@v3
