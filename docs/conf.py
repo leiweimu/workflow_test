@@ -41,7 +41,7 @@ autodoc_default_options = {
 
 autosummary_generate = True
 
-apidoc_module_dir = '../sketchyopts'
+apidoc_module_dir = '../sketchyopts/'
 apidoc_output_dir = '.api/'
 # apidoc_excluded_paths = ['../tests']
 apidoc_separate_modules = True
