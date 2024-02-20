@@ -35,21 +35,28 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install -r ./tests/requirements.txt
-        python -m pip install pytest pytest-cov pytest-md pytest-emoji
-    - name: Test with pytest
-      uses: pavelzw/pytest-action@v2
-      with:
-        report-title: ""
-        click-to-expand: false
-        emoji: false
-        verbose: true
-        job-summary: true
-        custom-pytest: 'python -m pytest'
-        custom-arguments: '--cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/'
+    # - name: Test with pytest
+    #   uses: pavelzw/pytest-action@v2
+    #   with:
+    #     report-title: ""
+    #     click-to-expand: false
+    #     emoji: false
+    #     verbose: true
+    #     job-summary: true
+    #     custom-pytest: 'python -m pytest'
+    #     custom-arguments: '--cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/'
     # - name: Test with pytest
     #   run: |
     #     python -m pip install pytest pytest-cov
     #     python -m pytest --cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/
+    - name: Test with pytest
+      run: |
+        python -m pytest --cov=sketchyopts --cov-config=tests/.coveragerc --cov-report=term-missing:skip-covered --junitxml=pytest.xml tests/ | tee pytest-coverage.txt
+    - name: Summarize results in comment
+      uses: MishaKav/pytest-coverage-comment@main
+      with:
+        pytest-coverage-path: ./pytest-coverage.txt
+        junitxml-path: ./pytest.xml
   # format (changed) code using black
   format-code:
     name: linting
