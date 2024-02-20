@@ -54,7 +54,8 @@ jobs:
         echo '- Total number of failed tests: ${{ steps.action_test.outputs.failures }}' >> $GITHUB_STEP_SUMMARY
         echo '- Total number of errored tests: ${{ steps.action_test.outputs.errors }}' >> $GITHUB_STEP_SUMMARY
         echo '- Total time (seconds) used: ${{ steps.action_test.outputs.time }}' >> $GITHUB_STEP_SUMMARY
-        echo '\nDetailed Report:' >> $GITHUB_STEP_SUMMARY
+        echo '' >> $GITHUB_STEP_SUMMARY
+        echo 'Detailed Report:' >> $GITHUB_STEP_SUMMARY
         echo '${{ steps.action_test.outputs.coverageHtml }}' | sed -E 's/(.*?)summary>//' | sed 's/<\/details>$//' >> $GITHUB_STEP_SUMMARY
   # format (changed) code using black
   format-code:
