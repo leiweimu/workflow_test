@@ -1,7 +1,13 @@
+# -- Path setup --------------------------------------------------------------
+
 import os
 import sys
+sys.path.insert(0, os.path.abspath('..'))
 
-# -- General configuration ------------------------------------------------
+# -- Project information -----------------------------------------------------
+
+# -- General configuration ---------------------------------------------------
+
 master_doc = 'index'
 
 extensions = [
@@ -21,6 +27,12 @@ extensions = [
     # 'sphinxcontrib.collections'
 ]
 
+templates_path = ['_templates']
+
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
+# -- Options for HTML output -------------------------------------------------
+
 html_theme = 'sphinx_book_theme'
 
-# html_static_path = ['_static']
+html_static_path = ['_static']
