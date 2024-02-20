@@ -35,20 +35,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install -r ./tests/requirements.txt
-    # - name: Test with pytest
-    #   uses: pavelzw/pytest-action@v2
-    #   with:
-    #     report-title: ""
-    #     click-to-expand: false
-    #     emoji: false
-    #     verbose: true
-    #     job-summary: true
-    #     custom-pytest: 'python -m pytest'
-    #     custom-arguments: '--cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/'
-    # - name: Test with pytest
-    #   run: |
-    #     python -m pip install pytest pytest-cov
-    #     python -m pytest --cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/
     - name: Test with pytest
       run: |
         python -m pip install pytest pytest-cov
@@ -62,15 +48,14 @@ jobs:
         hide-comment: true
     - name: Output results to job summary
       run: |
-        echo '### Test Summary' >> $GITHUB_STEP_SUMMARY
         echo '- Total coverage: ${{ steps.action_test.outputs.coverage }}' >> $GITHUB_STEP_SUMMARY
         echo '- Total number of tests: ${{ steps.action_test.outputs.tests }}' >> $GITHUB_STEP_SUMMARY
         echo '- Total number of skipped tests: ${{ steps.action_test.outputs.skipped }}' >> $GITHUB_STEP_SUMMARY
         echo '- Total number of failed tests: ${{ steps.action_test.outputs.failures }}' >> $GITHUB_STEP_SUMMARY
         echo '- Total number of errored tests: ${{ steps.action_test.outputs.errors }}' >> $GITHUB_STEP_SUMMARY
         echo '- Total time (seconds) used: ${{ steps.action_test.outputs.time }}' >> $GITHUB_STEP_SUMMARY
+        echo 'Detailed Report:' >> $GITHUB_STEP_SUMMARY
         echo '${{ steps.action_test.outputs.coverageHtml }}' | sed -E 's/(.*?)summary>//' | sed 's/<\/details>$//' >> $GITHUB_STEP_SUMMARY
-        # echo '${{ steps.action_test.outputs.summaryReport }}' >> $GITHUB_STEP_SUMMARY
   # format (changed) code using black
   format-code:
     name: linting
@@ -89,13 +74,6 @@ jobs:
         with:
           files: |
             **.py
-      # - name: List all changed files
-      #   env:
-      #     ALL_CHANGED_FILES: ${{ steps.action_changed_files.outputs.all_changed_files }}
-      #   run: |
-      #     for file in ${ALL_CHANGED_FILES}; do
-      #       echo "$file was changed"
-      #     done
       - name: Check files using the black formatter
         if: steps.action_changed_files.outputs.all_changed_files
         uses: rickstaa/action-black@v1
