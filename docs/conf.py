@@ -2,8 +2,8 @@
 
 import os
 import sys
-# sys.path.insert(0, os.path.abspath('../'))
-sys.path.insert(0, os.path.abspath('../sketchyopts/'))
+sys.path.insert(0, os.path.abspath('..'))
+# sys.path.insert(0, os.path.abspath('../sketchyopts/'))
 
 # -- Project information -----------------------------------------------------
 
@@ -20,7 +20,7 @@ extensions = [
     # 'sphinx.ext.linkcode',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'sphinxcontrib.apidoc',
+    # 'sphinxcontrib.apidoc',
     # 'sphinxcontrib.katex',
     # 'sphinx_autodoc_typehints',
     # 'coverage_check',
@@ -41,10 +41,10 @@ autodoc_default_options = {
 
 autosummary_generate = True
 
-apidoc_module_dir = '../sketchyopts/'
-apidoc_output_dir = '.api/'
-# apidoc_excluded_paths = ['../tests']
-apidoc_separate_modules = True
+# apidoc_module_dir = '../sketchyopts/'
+# apidoc_output_dir = '.api/'
+# # apidoc_excluded_paths = ['../tests']
+# apidoc_separate_modules = True
 
 # -- Options for HTML output -------------------------------------------------
 
