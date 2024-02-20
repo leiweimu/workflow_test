@@ -13,7 +13,7 @@ Intoductory texts.
    :caption: API Reference
    :maxdepth: 2
 
-api/functions
+   api/functions
 
 Indices and Tables
 ==================
