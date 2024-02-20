@@ -4,16 +4,8 @@ import os
 import sys
 
 TYPE_REWRITES = [
-    ('~optax._src.base.GradientTransformation', 'optax.GradientTransformation'),
-    ('~optax._src.base.Params', 'optax.Params'),
-    ('~optax._src.base.Updates', 'optax.Updates'),
-    ('~optax._src.base.OptState', 'optax.OptState'),
-    ('base.GradientTransformation', 'optax.GradientTransformation'),
-    ('base.Params', 'optax.Params'),
-    ('base.Updates', 'optax.Updates'),
-    ('base.OptState', 'optax.OptState'),
+    ('~sketchyopts.functions', 'functions'),
 ]
-
 
 def _add_annotations_import(path):
   """Appends a future annotations import to the file at the given path."""
@@ -36,7 +28,7 @@ def _add_annotations_import(path):
 
 
 def _recursive_add_annotations_import():
-  for path, _, files in os.walk('../optax/'):
+  for path, _, files in os.walk('../sketchyopts/'):
     for file in files:
       if file.endswith('.py'):
         _add_annotations_import(os.path.abspath(os.path.join(path, file)))
@@ -102,7 +94,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinxcontrib.apidoc',
     # 'sphinxcontrib.katex',
-    # 'sphinx_autodoc_typehints',
+    'sphinx_autodoc_typehints',
     # 'coverage_check',
     # 'myst_nb',  # This is used for the .ipynb notebooks
     # 'sphinx_gallery.gen_gallery',
