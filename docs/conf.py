@@ -45,6 +45,7 @@ apidoc_module_dir = '../sketchyopts/'
 apidoc_output_dir = 'api'
 # # apidoc_excluded_paths = ['../tests']
 apidoc_separate_modules = True
+apidoc_module_first = True
 
 # -- Options for HTML output -------------------------------------------------
 
