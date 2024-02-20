@@ -55,8 +55,8 @@ jobs:
     - name: Summarize results in comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
-        pytest-coverage-path: ./pytest-coverage.txt
-        junitxml-path: ./pytest.xml
+        pytest-coverage-path: pytest-coverage.txt
+        junitxml-path: pytest.xml
   # format (changed) code using black
   format-code:
     name: linting
