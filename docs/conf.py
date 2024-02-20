@@ -19,7 +19,7 @@ extensions = [
     # 'sphinx.ext.linkcode',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'sphinxcontrib.apidoc',
+    # 'sphinxcontrib.apidoc',
     # 'sphinxcontrib.katex',
     # 'sphinx_autodoc_typehints',
     # 'coverage_check',
@@ -32,10 +32,10 @@ templates_path = ['_templates']
 
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-apidoc_module_dir = '../sketchyopts'
-apidoc_output_dir = 'api'
-apidoc_excluded_paths = ['../tests']
-apidoc_separate_modules = True
+# apidoc_module_dir = '../sketchyopts'
+# apidoc_output_dir = 'api'
+# apidoc_excluded_paths = ['../tests']
+# apidoc_separate_modules = True
 
 # -- Options for HTML output -------------------------------------------------
 
