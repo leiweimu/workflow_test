@@ -3,8 +3,7 @@ This is the modules docstring.
 """
 
 def very_important_function():
-    """
-    This is some documentation texts. 
+    """Very important function
 
     This function returns an array. 
     """
