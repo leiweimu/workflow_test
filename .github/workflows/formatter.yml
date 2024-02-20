@@ -40,10 +40,12 @@ jobs:
       uses: pavelzw/pytest-action@v2
       with:
         report-title: ""
+        click-to-expand: false
         emoji: false
         verbose: false
         job-summary: true
-        custom-arguments: "--cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/"
+        custom-pytest: 'python -m pytest'
+        custom-arguments: '--cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/'
     # - name: Test with pytest
     #   run: |
     #     python -m pip install pytest pytest-cov
