@@ -70,7 +70,7 @@ def _monkey_patch_doc_strings():
   sphinx_autodoc_typehints.process_docstring = new_process_docstring
 
 
-_recursive_add_annotations_import()
+# _recursive_add_annotations_import()
 _monkey_patch_doc_strings()
 
 
