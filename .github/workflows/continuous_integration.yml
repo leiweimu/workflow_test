@@ -62,9 +62,9 @@ jobs:
         hide-comment: true
     - name: Output results to job summary
       run: |
-        echo 'Total Coverage: ${{ steps.action_test.outputs.coverage }}' >> $GITHUB_STEP_SUMMARY
+        # echo 'Total Coverage: ${{ steps.action_test.outputs.coverage }}' >> $GITHUB_STEP_SUMMARY
         echo '${{ steps.action_test.outputs.coverageHtml }}' >> $GITHUB_STEP_SUMMARY
-        echo '${{ steps.action_test.outputs.summaryReport }}' >> $GITHUB_STEP_SUMMARY
+        # echo '${{ steps.action_test.outputs.summaryReport }}' >> $GITHUB_STEP_SUMMARY
   # format (changed) code using black
   format-code:
     name: linting
