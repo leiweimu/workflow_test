@@ -42,7 +42,7 @@ jobs:
         report-title: ""
         click-to-expand: false
         emoji: false
-        verbose: false
+        verbose: true
         job-summary: true
         custom-pytest: 'python -m pytest'
         custom-arguments: '--cov=sketchyopts --cov-config=tests/.coveragerc --cov-report term-missing tests/'
