@@ -1,3 +1,2 @@
 sphinx-book-theme
-sphinxcontrib-apidoc
 sphinx-autodoc-typehints
