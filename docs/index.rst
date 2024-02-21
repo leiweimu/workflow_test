@@ -8,8 +8,7 @@ Intoductory texts.
 .. toctree::
    :hidden:
 
-.. autosummary::
-   :toctree: _autosummary
+.. toctree::
    :hidden:
    :caption: API Reference
    :maxdepth: 2
