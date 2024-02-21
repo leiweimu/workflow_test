@@ -16,3 +16,6 @@ docs = [
 
 [tool.pyright]
 include = ["sketchyopts"]
+
+[tool.coverage.run]
+omit = ["tests/*"]
