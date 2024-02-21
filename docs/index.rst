@@ -14,7 +14,7 @@ Intoductory texts.
    :caption: API Reference
    :maxdepth: 2
 
-   api
+   api/sketchyopts.functions
 
 Indices and Tables
 ==================
