@@ -8,12 +8,13 @@ Intoductory texts.
 .. toctree::
    :hidden:
 
-.. toctree::
+.. autosummary::
+   :toctree: _autosummary
    :hidden:
    :caption: API Reference
    :maxdepth: 2
 
-   api/sketchyopts.functions
+   api
 
 Indices and Tables
 ==================
