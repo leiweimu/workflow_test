@@ -28,11 +28,9 @@ def bar():
     print("There is a newline above me, and that's OK!")
 
 def daily_average(temperatures: list[float]) -> float:
-    """Computes daily average. 
+    r"""Computes daily average. 
 
-    This computes .. math::
-    \frac{1}{n} \sum_{i=1}^{n} t_i
-    .
+    This computes :math:`\frac{1}{n} \sum_{i=1}^{n} t_i`.
 
     References: 
         Zhuang et al, 2020: https://arxiv.org/abs/2010.07468
