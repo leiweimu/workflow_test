@@ -93,7 +93,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     # 'sphinxcontrib.apidoc',
-    # 'sphinxcontrib.katex',
+    'sphinxcontrib.katex',
     'sphinx_autodoc_typehints',
     # 'coverage_check',
     # 'myst_nb',  # This is used for the .ipynb notebooks
@@ -121,6 +121,8 @@ autosummary_generate = True
 
 # python_use_unqualified_type_names = False
 # add_module_names = False
+
+katex_prerender = True
 
 # -- Options for HTML output -------------------------------------------------
 
