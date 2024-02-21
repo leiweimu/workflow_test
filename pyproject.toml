@@ -1,3 +1,11 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sketchyopts"
+requires-python = ">=3.9"
+
 [project.optional-dependencies]
 test = []
 docs = [
