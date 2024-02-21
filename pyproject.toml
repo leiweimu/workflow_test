@@ -1,2 +1,9 @@
+[project.optional-dependencies]
+test = []
+docs = [
+  "sphinx-book-theme", 
+  "sphinx-autodoc-typehints"
+]
+
 [tool.pyright]
 include = ["sketchyopts"]
