@@ -2,7 +2,7 @@
 test = []
 docs = [
   "sphinx-book-theme", 
-  "sphinx-autodoc-typehints"
+  "sphinx-autodoc-typehints",
 ]
 
 [tool.pyright]
