@@ -92,7 +92,7 @@ extensions = [
     # 'sphinx.ext.linkcode',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'sphinxcontrib.apidoc',
+    # 'sphinxcontrib.apidoc',
     # 'sphinxcontrib.katex',
     'sphinx_autodoc_typehints',
     # 'coverage_check',
@@ -113,11 +113,11 @@ autodoc_default_options = {
 
 autosummary_generate = True
 
-apidoc_module_dir = '../sketchyopts/'
-apidoc_output_dir = 'api'
-# # apidoc_excluded_paths = ['../tests']
-apidoc_separate_modules = True
-# apidoc_module_first = True
+# apidoc_module_dir = '../sketchyopts/'
+# apidoc_output_dir = 'api'
+# # # apidoc_excluded_paths = ['../tests']
+# apidoc_separate_modules = True
+# # apidoc_module_first = True
 
 python_use_unqualified_type_names = False
 add_module_names = False
