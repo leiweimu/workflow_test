@@ -71,7 +71,7 @@ def _monkey_patch_doc_strings():
 
 
 # _recursive_add_annotations_import()
-_monkey_patch_doc_strings()
+# _monkey_patch_doc_strings()
 
 
 sys.path.insert(0, os.path.abspath('..'))
@@ -119,8 +119,8 @@ autosummary_generate = True
 # apidoc_separate_modules = True
 # # apidoc_module_first = True
 
-python_use_unqualified_type_names = False
-add_module_names = False
+# python_use_unqualified_type_names = False
+# add_module_names = False
 
 # -- Options for HTML output -------------------------------------------------
 
