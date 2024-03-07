@@ -1,8 +1,15 @@
-from sketchyopts import functions
+from sketchyopts import preconditioner
+from sketchyopts import solver
+from sketchyopts import errors
 
-very_important_function = functions.very_important_function
-foo = functions.foo
-bar = functions.bar
-daily_average = functions.daily_average
+rand_nystrom_approx = preconditioner.rand_nystrom_approx
+nystrom_pcg = solver.nystrom_pcg
+InputDimError = errors.InputDimError
+MatrixNotSquareError = errors.MatrixNotSquareError
 
-__all__ = ("very_important_function", "foo", "bar", "daily_average")
+__all__ = (
+    "rand_nystrom_approx",
+    "nystrom_pcg",
+    "InputDimError",
+    "MatrixNotSquareError",
+)

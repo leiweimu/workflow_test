@@ -6,13 +6,19 @@ build-backend = "setuptools.build_meta"
 name = "sketchyopts"
 dynamic = ["version"]
 requires-python = ">=3.9"
+dependencies = [
+  "jax",
+  "jaxlib",
+  "optax",
+]
 
 [project.optional-dependencies]
 test = []
 docs = [
   "sphinx-book-theme", 
-  "sphinx-autodoc-typehints",
   "sphinxcontrib-katex",
+  "sphinx-autodoc-typehints",
+  "sphinx_design",
 ]
 
 [tool.pyright]
