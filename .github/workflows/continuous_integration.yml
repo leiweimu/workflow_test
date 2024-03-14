@@ -94,7 +94,8 @@ jobs:
           echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
           echo "${out}" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          if [[ "${out[*]}" =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?' ]]; then
+          regex='\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
+          if [[ "${out[*]}" =~ $regex ]]; then
             echo "is_formatted=true" >> $GITHUB_OUTPUT
             echo "is_formatted=true" >> $GITHUB_STEP_SUMMARY
           else
