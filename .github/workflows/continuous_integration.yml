@@ -78,19 +78,35 @@ jobs:
       #   with:
       #     files: |
       #       **.py
-      - name: Check files using the black formatter
-        # if: steps.action_changed_files.outputs.all_changed_files
-        uses: psf/black@stable
-        id: black
-        with:
-          options: ""
+      # - name: Check files using the black formatter
+      #   # if: steps.action_changed_files.outputs.all_changed_files
+      #   uses: psf/black@stable
+      #   id: black
+      #   with:
+      #     options: ""
           # src: "${{ steps.action_changed_files.outputs.all_changed_files }}"
-      - name: Determine if any file gets formatted
-        id: is_formatted
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
         run: |
-          echo '${{ GITHUB_STEP_SUMMARY }}'
-          echo '${{ GITHUB_STEP_SUMMARY[-1] }}'
-          '${{ GITHUB_STEP_SUMMARY[-1] }}' =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
+          python -m pip install --upgrade pip
+          python -m pip install black
+          out = python -m black
+          echo "${out}"
+          echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
+          echo "${out}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          if [[ "${out[*]}" =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?' ]]; then
+            echo "is_formatted=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_formatted=false" >> $GITHUB_OUTPUT
+          fi
+      # - name: Determine if any file gets formatted
+      #   id: is_formatted
+      #   run: |
+      #     python 
       # '${{ steps.black.outputs[*][-1] }}' =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
       # - name: Create Pull Request
       #   # if: (steps.action_changed_files.outputs.all_changed_files && steps.is_formatted.outputs == 'true')
