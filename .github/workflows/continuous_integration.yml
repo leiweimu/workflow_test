@@ -93,7 +93,9 @@ jobs:
         run: |
           python -m venv venv
           . venv/bin/activate
+          pip install --upgrade pip
           venv/bin/pip install --upgrade --no-cache-dir black
+          venv/bin/pip install --upgrade --no-cache-dir colorama
           out = python -m black
           echo "${out}"
           echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
