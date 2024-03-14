@@ -72,28 +72,24 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      # - name: Get changed files
-      #   id: action_changed_files
-      #   uses: tj-actions/changed-files@v42
-      #   with:
-      #     files: |
-      #       **.py
-      # - name: Check files using the black formatter
-      #   # if: steps.action_changed_files.outputs.all_changed_files
-      #   uses: psf/black@stable
-      #   id: black
-      #   with:
-      #     options: ""
-          # src: "${{ steps.action_changed_files.outputs.all_changed_files }}"
+      - name: Get changed files
+        id: action_changed_files
+        uses: tj-actions/changed-files@v42
+        with:
+          files: |
+            **.py
       - name: Set up Python
+        if: steps.action_changed_files.outputs.all_changed_files
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Install dependencies
+      - name: Format changed code with black
+        if: steps.action_changed_files.outputs.all_changed_files
+        id: black
         run: |
           python -m pip install --upgrade pip
           python -m pip install black
-          out="$(python -m black . 2>&1)"
+          out="$(python -m black ${{ steps.action_changed_files.outputs.all_changed_files }} 2>&1)"
           echo "${out}"
           echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
           echo "${out}" >> $GITHUB_STEP_SUMMARY
@@ -103,24 +99,18 @@ jobs:
           else
             echo "is_formatted=false" >> $GITHUB_OUTPUT
           fi
-      # - name: Determine if any file gets formatted
-      #   id: is_formatted
-      #   run: |
-      #     python 
-      # '${{ steps.black.outputs[*][-1] }}' =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
-      # - name: Create Pull Request
-      #   # if: (steps.action_changed_files.outputs.all_changed_files && steps.is_formatted.outputs == 'true')
-      #   if: (steps.is_formatted.outputs == 'true')
-      #   uses: peter-evans/create-pull-request@v6
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     title: "[GiHub Actions] Format Python code with Black"
-      #     commit-message: "Format Python code with Black"
-      #     body: |
-      #       There appear to be some python formatting errors in ${{ github.sha }}. This automatically generated pull request
-      #       uses the [Black](https://github.com/psf/black) formatter to fix these issues.
-      #     base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
-      #     branch: actions/black
+      - name: Create Pull Request
+        if: (steps.action_changed_files.outputs.all_changed_files && steps.black.outputs.is_formatted == 'true')
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "[GiHub Actions] Format Python code with Black"
+          commit-message: "Format Python code with Black"
+          body: |
+            There appear to be some python formatting errors in ${{ github.sha }}. This automatically generated pull request
+            uses the [Black](https://github.com/psf/black) formatter to fix these issues.
+          base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
+          branch: actions/black
   # build documentation
   # pages:
   #   name: docs generation
