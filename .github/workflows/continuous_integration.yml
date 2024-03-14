@@ -88,8 +88,8 @@ jobs:
       - name: Determine if any file gets formatted
         id: is_formatted
         run: |
-          echo '${{ steps.black.outputs.* }}'
-          '${{ steps.black.outputs.* }}' =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
+          echo '${{ steps.black.outputs[*][-1] }}'
+          '${{ steps.black.outputs[*][-1] }}' =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
       - name: Create Pull Request
         # if: (steps.action_changed_files.outputs.all_changed_files && steps.is_formatted.outputs == 'true')
         if: (steps.is_formatted.outputs == 'true')
