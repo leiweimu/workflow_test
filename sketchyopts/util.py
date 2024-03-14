@@ -44,10 +44,3 @@ def shareble_state_chain(
       new_state.append(new_s)
     return updates, tuple(new_state)
 
-  # We opt to always return the GradientTransformationExtraArgs type here,
-  # instead of selecting the return type based on the arguments, since it works
-  # much better with the currently available type checkers. It also means that
-  # users will not get unexpected signature errors if they remove all of the
-  # transformations in a chain accepting extra args.
-  return base.GradientTransformationExtraArgs(init_fn, update_fn)
-
