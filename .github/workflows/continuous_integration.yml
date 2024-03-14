@@ -89,7 +89,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install black
-          out="$(python -m black ${{ steps.action_changed_files.outputs.all_changed_files }} 2>&1)"
+          out="$(python -m black ${steps.action_changed_files.outputs.all_changed_files} 2>&1)"
           echo "${out}"
           echo "\`\`\`python" >> $GITHUB_STEP_SUMMARY
           echo "${out}" >> $GITHUB_STEP_SUMMARY
