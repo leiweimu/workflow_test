@@ -80,12 +80,17 @@ jobs:
             **.py
       - name: Check files using the black formatter
         if: steps.action_changed_files.outputs.all_changed_files
-        uses: rickstaa/action-black@v1
-        id: action_black
+        uses: psf/black@stable
+        id: black
         with:
-          black_args: "${{ steps.action_changed_files.outputs.all_changed_files }}"
+          options: ""
+          src: "${{ steps.action_changed_files.outputs.all_changed_files }}"
+      - name: Determine if any file gets formatted
+        id: is_formatted
+        run: |
+          '${{ steps.black.outputs[*] }}' =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
       - name: Create Pull Request
-        if: (steps.action_changed_files.outputs.all_changed_files && steps.action_black.outputs.is_formatted == 'true')
+        if: (steps.action_changed_files.outputs.all_changed_files && steps.is_formatted.outputs. == 'true')
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
