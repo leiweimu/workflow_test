@@ -109,27 +109,3 @@ def shareble_state_named_chain(
     return updates, new_state
 
   return base.GradientTransformationExtraArgs(init_fn, update_fn)
-
-
-def scale_by_adaptive_learning_rate(
-    learning_rate: base.ScalarOrSchedule,
-    *,
-    flip_sign: bool = True,
-) -> base.GradientTransformation:
-  """Scale by the (negative) learning rate (either as scalar or as schedule).
-
-  Args:
-    learning_rate: Can either be a scalar or a schedule (i.e. a callable that
-      maps an (int) step to a float).
-    flip_sign: When set to True (the default) this corresponds to scaling by the
-      negative learning rate.
-
-  Returns:
-    An optax.GradientTransformation that corresponds to multiplying the gradient
-    with `-learning_rate` (if flip_sign is True) or with `learning_rate` (if
-    flip_sign is False).
-  """
-  m = -1 if flip_sign else 1
-  if callable(learning_rate):
-    return scale_by_schedule(lambda count: m * learning_rate(count))
-  return scale(m * learning_rate)
