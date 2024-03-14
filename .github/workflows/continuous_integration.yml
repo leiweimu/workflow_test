@@ -90,7 +90,7 @@ jobs:
         run: |
           '${{ steps.black.outputs[*] }}' =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?'
       - name: Create Pull Request
-        if: (steps.action_changed_files.outputs.all_changed_files && steps.is_formatted.outputs. == 'true')
+        if: (steps.action_changed_files.outputs.all_changed_files && steps.is_formatted.outputs == 'true')
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
