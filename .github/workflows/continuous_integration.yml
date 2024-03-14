@@ -96,8 +96,10 @@ jobs:
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           if [[ "${out[*]}" =~ '\s?[0-9]+\sfiles?\sreformatted(\.|,)\s?' ]]; then
             echo "is_formatted=true" >> $GITHUB_OUTPUT
+            echo "is_formatted=true" >> $GITHUB_STEP_SUMMARY
           else
             echo "is_formatted=false" >> $GITHUB_OUTPUT
+            echo "is_formatted=false" >> $GITHUB_STEP_SUMMARY
           fi
       - name: Create Pull Request
         if: (steps.action_changed_files.outputs.all_changed_files && steps.black.outputs.is_formatted == 'true')
